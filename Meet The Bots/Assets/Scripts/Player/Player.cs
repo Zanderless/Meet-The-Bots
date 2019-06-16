@@ -30,9 +30,10 @@ public class Player : Entity, IDamageable, IHealable
     float verticalLookRotation;
     private Transform PCam => transform.GetChild(0);
 
-    //Amount of times the player can dash, after the first dash starts
-    //A short timer will refil the first dash before restarting
+    //Amount of times the player can dash. Max is 3
     private int dashAmount = 3;
+    //Dash icons that will show based on how many dashes
+    //the player has
     public GameObject[] dashIcons;
     private float dashForce = 2500f;
 
