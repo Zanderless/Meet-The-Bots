@@ -10,7 +10,10 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+
+        Player player = other.GetComponent<Player>();
+
+        if (player && player.Health < player.maxHealth)
         {
             other.GetComponent<Player>().AddHealth(health);
             Destroy(this.gameObject);
