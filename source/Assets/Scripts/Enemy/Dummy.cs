@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/**
+ * @file       : Dummy.cs
+ * @author     :
+ * @description:
+ * @note    
+ */
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
