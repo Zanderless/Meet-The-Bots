@@ -9,11 +9,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct Attributes
+{
+    public readonly double heatlh;
+    public readonly decimal stamina;
+    public readonly decimal pysche;
+
+    public MyStruct(double health, decimal stamina, decimal pysche)
+    {
+        this.health = health;
+        this.stamina = stamina;
+        this.pysche = pysche;
+    }
+}
+
+
 public class Entity : MonoBehaviour
 {
+  
+    /* Personality */
+    
 
-    private float _health;
+
+    /* Attributes */
+    private Attributes attributes;
+
+    public attributes Attributes
+    {
+        get { return attributes; }
+        set { attributes = attributesData; }
+    }
+
+    // private float _health;
+    // private float _stamina;
+    // private float _psyche;
+
     public float maxHealth;
+    public float maxStamina; 
+    
+    public float maxPsyche;
+    
+    private float _armor;
+
+    public float maxArmor;
+
+
     public float Health
     {
         get { return _health; }
@@ -27,8 +67,6 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private float _armor;
-    public float maxArmor;
     public float Armor
     {
         get { return _armor; }
@@ -41,11 +79,25 @@ public class Entity : MonoBehaviour
 
     public bool IsAlive => Health > 0;
 
+    /* Entity Pose */
     public Vector3 EnityPos => transform.position;
     public Quaternion EntityRot => transform.rotation;
 
+    /* Life states */
     public virtual void Die()
     {
         print("dead");
     }
+
+    public virtual void Fatigue()
+    {
+        print("fatigued");
+    }
+
+
+    public Entity()
+    {
+        attributes = new Attributes(maxHealth, maxStamina, maxPsyche);
+    }
+
 }
