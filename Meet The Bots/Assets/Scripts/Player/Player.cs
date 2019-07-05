@@ -103,7 +103,7 @@ public class Player : Entity, IDamageable, IHealable
         {
             GUI.Label(new Rect(10, 5, 100, 20), "Player Debug Stats", style);
 
-            var vel = new Vector3(velocity.x / MoveSpeed, 0, velocity.z / StrafeSpeed);
+            var vel = new Vector3(velocity.x, 0, velocity.z);
             float horiSpeed = vel.magnitude;
             GUI.Label(new Rect(10, 25, 100, 20), "XZ Speed: " + Mathf.RoundToInt(horiSpeed).ToString() + " m/s", style);
 
