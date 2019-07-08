@@ -1,5 +1,5 @@
 ﻿/**
- * @file       : Dummy.cs
+ * @file       : Agent.cs
  * @author     :
  * @description:
  * @note    
@@ -10,8 +10,7 @@ using UnityEngine;
 
 public class Agent {
     // Start is called before the first frame update
-    void Start()
-    {
-        Health = maxHealth;
+    void Start() {
+
     }
 }
