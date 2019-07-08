@@ -1,5 +1,5 @@
-﻿/**
- * @file       : SettingsOverlay.cs
+/**
+ * @file       : OptionsOverlay.cs
  * @author     :
  * @description:
  * @note    
@@ -8,6 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsOverlay {
+public class OptionsOverlay {
     
 }
