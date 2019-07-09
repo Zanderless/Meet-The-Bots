@@ -12,6 +12,3 @@ public class GameManager {
 
 }
 
-public class GameSingleton {
-    
-}
