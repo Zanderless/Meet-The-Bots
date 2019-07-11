@@ -4,11 +4,41 @@
  * @description: Core Game manager
  * @note    
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager {
+namespace MTB {
+    
+    public class GameManager : IManager {
 
+        /**
+         *  @brief  load an existing item 
+         */
+        void load() {
+
+        }
+
+        /**
+         *  @brief  save the current active item
+         */
+        void save() {
+            
+        }
+
+        /**
+         *  @brief  destroy an exusting item
+         */
+        void destroy() {
+            
+        }
+
+        /**
+         *  @brief  create a new item
+         */
+        void create() {
+            
+        }
+    }
 }
-

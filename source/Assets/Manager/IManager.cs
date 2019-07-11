@@ -10,21 +10,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MTB {
+    
     interface IManager {
 
         /**
-        *
-        */
+         *  @brief  load an existing item 
+         */
         void load();
 
-        void quit();
+        /**
+         *  @brief  save the current active item
+         */
+        void save();
 
-        void open();
+        /**
+         *  @brief  destroy an exusting item
+         */
+        void destroy();
 
-        void close();
-
+        /**
+         *  @brief  create a new item
+         */
+        void create();
     }
-
 }
-
-
