@@ -8,18 +8,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseItem : MonoBehaviour
-{
+namespace MTB {
 
-    // resource that item provides 
-    [Tooltip("")]
-    public float resource;
+    public class BaseItem : MonoBehaviour, IItem
+    {
 
-    /**
-     * @brief   when item has triggered an event
-     * @param   other       object which has triggered item event      
-     */
-    private void OnTriggerEnter(Collider other) {
+        // resource that item provides 
+        [Tooltip("")]
+        public float resource;
 
+        /**
+        * @brief   when item has triggered an event
+        * @param   other       object which has triggered item event      
+        */
+        private void OnTriggerEnter(Collider other) {
+
+        }
     }
 }

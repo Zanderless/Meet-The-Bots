@@ -1,13 +1,16 @@
 /**
- * @file       : IResource.cs
+ * @file       : BaseResource.cs
  * @author     :
- * @description: Base Item interface
+ * @description:
  * @note    
  */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IResource {
+namespace MTB {
 
+    interface IResource {
+        
+    }
 }

@@ -8,7 +8,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
-{
-    void TakeDamage(float d);
+namespace MTB {
+
+    public interface IDamageable {
+        /** 
+         * @brief   add damage to object
+         * @param   d   amount of damage to add 
+         */
+        void TakeDamage(float d);
+    }
 }

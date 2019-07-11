@@ -1,13 +1,16 @@
 /**
- * @file       : IItem.cs
+ * @file       : Environment.cs
  * @author     :
- * @description: Base Item interface
+ * @description:
  * @note    
  */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IItem {
+namespace MTB {
 
+    public interface IItem {
+        
+    }
 }

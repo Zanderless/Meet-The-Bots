@@ -8,6 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBot {
+namespace MTB { 
+    
+    public class BaseBot {
 
+    }
 }

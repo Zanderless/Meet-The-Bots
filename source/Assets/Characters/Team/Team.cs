@@ -8,10 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Team
-{
-    // Start is called before the first frame update
-    void Start() {
-    
+namespace MTB {
+
+    public class Team {
+
     }
 }

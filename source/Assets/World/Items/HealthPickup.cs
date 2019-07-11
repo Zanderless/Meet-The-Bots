@@ -8,22 +8,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
-{
+namespace MTB {
 
-    [Tooltip("How much health to give to the player")]
-    public float health;
+    public class HealthPickup : BaseItem {
 
-    private void OnTriggerEnter(Collider other)
-    {
+        [Tooltip("How much health to give to the player")]
+        public float health;
 
-        Player player = other.GetComponent<Player>();
-
-        if (player && player.Health < player.maxHealth)
+        /**
+         * @brief   when item has triggered an event
+         * @param   other       object which has triggered item event      
+         */
+        private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<Player>().AddHealth(health);
-            Destroy(this.gameObject);
+
+            Player player = other.GetComponent<Player>();
+
+            if (player && player.Health < player.maxHealth)
+            {
+                other.GetComponent<Player>().AddHealth(health);
+                Destroy(this.gameObject);
+            }
         }
     }
-
 }
