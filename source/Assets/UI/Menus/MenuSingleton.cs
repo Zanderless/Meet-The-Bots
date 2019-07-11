@@ -1,7 +1,7 @@
 /**
  * @file       : MenuSingleton.cs
  * @author     :
- * @description: Menu Singleton
+ * @description: Menu Singleton (Thread Safe)
  * @note    https://csharpindepth.com/articles/singleton
  */
 using System.Collections;
@@ -14,9 +14,15 @@ namespace MTB {
         private static MenuSingleton instance = null;
         private static readonly object padlock = new object();
 
+        /**
+         * @brief   constructor
+         */
         MenuSingleton()
         {}
 
+        /**
+         * @brief   singleton instance
+         */
         public static MenuSingleton Instance {
             get {
                 lock (padlock) {
