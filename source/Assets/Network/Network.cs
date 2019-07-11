@@ -1,5 +1,5 @@
 /**
- * @file       : GameSingleton.cs
+ * @file       : Network.cs
  * @author     :
  * @description:
  * @note    
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class GameSingleton {
+    public class Network {
 
     }
 }
