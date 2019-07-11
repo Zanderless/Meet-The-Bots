@@ -1,5 +1,5 @@
-﻿/**
- * @file       : BaseEnemy.cs
+/**
+ * @file       : IAdversary.cs
  * @author     :
  * @description:
  * @note    
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class BaseEnemy : Entity, IAdversary {
+    interface IAdversary {
         
     }
 }
