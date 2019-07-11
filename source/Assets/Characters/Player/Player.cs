@@ -11,10 +11,10 @@ using UnityEngine.UI.ProceduralImage;
 using TMPro;
 using System;
 
-[RequireComponent(typeof(CharacterController))]
-[DisallowMultipleComponent]
-
 namespace MTB {
+
+    [RequireComponent(typeof(CharacterController))]
+    [DisallowMultipleComponent]
 
     public class Player : Entity, IDamageable, IHealable, IMovement {
 
