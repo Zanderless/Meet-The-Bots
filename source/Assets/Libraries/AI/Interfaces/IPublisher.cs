@@ -12,7 +12,7 @@ namespace MTB {
 
     interface IPublisher {
 
-        void publish()
+        void publish();
         
     }
 }
