@@ -1,7 +1,7 @@
 /**
  * @file       : Architecture.cs
  * @author     :
- * @description:
+ * @description: Base AI Architecture
  * @note    
  */
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Architecture {
+    public class BaseArchitecture {
         
     }
 }
