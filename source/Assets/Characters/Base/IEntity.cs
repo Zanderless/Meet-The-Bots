@@ -13,5 +13,7 @@ namespace MTB {
 
     interface IEntity {
         
+        void die();
+
     }
 }

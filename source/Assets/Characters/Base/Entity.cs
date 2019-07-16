@@ -11,8 +11,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Entity : MonoBehaviour, IEntity
-    {
+    public class Entity : MonoBehaviour, IEntity {
     
         /* Personality */
         
