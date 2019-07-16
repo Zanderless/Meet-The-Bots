@@ -15,6 +15,11 @@ namespace MTB {
         MUTED,
     }
 
+    public static enum AudtioMood {
+        INTENSE, 
+        CALM, 
+    }
+
     /* Audio data structs */
     public struct audioData {
         double volume;
