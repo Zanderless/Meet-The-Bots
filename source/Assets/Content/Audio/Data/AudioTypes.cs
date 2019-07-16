@@ -18,6 +18,12 @@ namespace MTB {
     /* Audio data structs */
     public struct audioData {
         double volume;
+
+        double intensity;
+
+        double pitch; 
+
+        double timbre; 
     }
 
     public class AudioTypes {
