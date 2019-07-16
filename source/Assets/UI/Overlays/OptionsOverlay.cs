@@ -1,5 +1,5 @@
 /**
- * @file       : Environment.cs
+ * @file       : OptionsOverlay.cs
  * @author     :
  * @description:
  * @note    
@@ -9,8 +9,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MTB {
-
-    public class Environment {
+    
+    public class OptionsOverlay {
         
     }
 }

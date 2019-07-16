@@ -1,5 +1,5 @@
 /**
- * @file       : Environment.cs
+ * @file       : Boss.cs
  * @author     :
  * @description:
  * @note    
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Environment {
+    public class Boss {
         
     }
 }

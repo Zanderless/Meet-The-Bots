@@ -1,16 +1,17 @@
 /**
- * @file       : Environment.cs
+ * @file       : IProcGen.cs
  * @author     :
- * @description:
+ * @description: Core Game manager
  * @note    
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MTB {
+    
+    interface IProcGen {
 
-    public class Environment {
-        
     }
 }
