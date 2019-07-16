@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    interface IResource {
+    public interface IResource {
         
     }
 }
