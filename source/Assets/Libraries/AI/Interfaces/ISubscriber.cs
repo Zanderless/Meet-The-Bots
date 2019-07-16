@@ -12,5 +12,7 @@ namespace MTB {
 
     interface ISubscriber {
         
+        void subscribe();
+
     }
 }

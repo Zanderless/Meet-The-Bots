@@ -11,6 +11,8 @@ using UnityEngine;
 namespace MTB {
 
     interface IPublisher {
+
+        void publish()
         
     }
 }
