@@ -29,17 +29,13 @@ namespace MTB {
          */
         public struct Attributes {
             /* Data values */
-            public double fluid;
-
+            public decimal fluid;
             public decimal energy;
-
             public decimal pysche;
 
             /* Upper bounds */
             public readonly double maxHealth; 
-
             public readonly double maxStamina; 
-            
             public readonly double maxPsyche; 
 
             /**
