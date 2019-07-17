@@ -105,7 +105,9 @@ namespace MTB {
         /** 
          * @brief   move
          */
-        void move(); 
+        void move() {
+                
+        }
 
         /** 
          * @brief   jump

@@ -11,26 +11,26 @@ using UnityEngine;
 
 namespace MTB {
     
-    interface IManager {
+    public interface IManager {
 
         /**
-         *  @brief  load an existing item 
+         *  @brief  Load an existing item 
          */
-        void load();
+        void Load();
 
         /**
-         *  @brief  save the current active item
+         *  @brief  Save the current active item
          */
-        void save();
+        void Save();
 
         /**
-         *  @brief  destroy an exusting item
+         *  @brief  Destroy an exusting item
          */
-        void destroy();
+        void Destroy();
 
         /**
-         *  @brief  create a new item
+         *  @brief  Create a new item
          */
-        void create();
+        void Create();
     }
 }
