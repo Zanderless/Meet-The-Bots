@@ -13,22 +13,22 @@ namespace MTB {
     public interface IMenu {
 
         /**
-         * @brief   construct a new menu 
+         * @brief   Construct a new menu 
          */
         void Construct();
 
         /**
-         * @brief   setup a menu
+         * @brief   Setup a menu
          */
         void Setup();
 
         /**
-         * @brief   open a menu 
+         * @brief   Open a menu 
          */
         void Open();
 
         /**
-         * @brief   close the active menu 
+         * @brief   Close the active menu 
          */
         void Close();
     }

@@ -13,7 +13,7 @@ namespace MTB {
     public class MainMenu : IMenu {
 
         /**
-         * @brief   construct a new menu 
+         * @brief   Construct a new menu 
          */
         public void Construct()
         {
@@ -21,7 +21,7 @@ namespace MTB {
         }
 
         /**
-         * @brief   setup a menu
+         * @brief   Setup a menu
          */
         public void Setup()
         {
@@ -29,7 +29,7 @@ namespace MTB {
         }
 
         /**
-         * @brief   open a menu 
+         * @brief   Open a menu 
          */
         public void Open()
         {
@@ -37,11 +37,10 @@ namespace MTB {
         }
 
         /**
-         * @brief   close the active menu 
+         * @brief   Close the active menu 
          */
         public void Close()
         {
 
         }
-    }
 }
