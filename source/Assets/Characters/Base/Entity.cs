@@ -25,8 +25,20 @@ namespace MTB {
         }
 
 
+        /**
+         * @brief   Constructor
+         */
         public Entity() {
             attributes = new Attributes(maxHealth, maxStamina, maxPsyche);
         }
+
+        /**
+         * @brief   On Death
+         */
+        public void die() {
+            
+        }
+
+
     }
 }
