@@ -10,8 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Dummy : Enemy
-    {
+    public class Dummy { //: Enemy 
         /** 
          * @brief   Start is called before the first frame update
          */

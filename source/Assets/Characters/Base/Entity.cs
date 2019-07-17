@@ -12,11 +12,7 @@ using UnityEngine;
 namespace MTB {
 
     public class Entity : MonoBehaviour, IEntity {
-    
-        /* Personality */
-        
-
-        /* Attributes */
+        /* Entity Data */
         private Attributes attributes;
 
         public attributes Attributes {
