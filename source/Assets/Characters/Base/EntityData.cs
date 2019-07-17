@@ -13,7 +13,7 @@ namespace MTB {
 
     namespace EntityData {
         /* Enitity Constants */
-        static const double GRAVITY = 9.8f;
+        public readonly decimal GRAVITY = 9.8;
 
         /* Entity enum types */
         public static enum LifeState {
@@ -34,9 +34,9 @@ namespace MTB {
             public decimal pysche;
 
             /* Upper bounds */
-            public readonly double maxHealth; 
-            public readonly double maxStamina; 
-            public readonly double maxPsyche; 
+            public readonly decimal maxFluid; 
+            public readonly decimal maxEnergy; 
+            public readonly decimal maxPsyche; 
 
             /**
              * @brief   Constructor
@@ -44,9 +44,9 @@ namespace MTB {
              * @param   energy      entity life energy 
              * @param   psyche      entity mental energy   
              */
-            public Attributes(double health, decimal stamina, decimal pysche) {
-                this.health = health;
-                this.stamina = stamina;
+            public Attributes(decimal fluid, decimal energy, decimal pysche) {
+                this.fluid = fluid;
+                this.energy = energy;
                 this.pysche = pysche;
             }
         }
@@ -56,13 +56,10 @@ namespace MTB {
          */
         public struct Abilities {
             /* Data values */
-            public double plasma;
-
-            public double gas;
-
-            public double liquid;
-
-            public double solid;
+            public decimal plasma;
+            public decimal gas;
+            public decimal liquid;
+            public decimal solid;
 
             /**
              * @brief   Constructor
@@ -71,7 +68,7 @@ namespace MTB {
              * @param   liquid      ...
              * @param   solid       ...
              */
-            public Abilities(double plasma, double gas, double liquid, double solid) {
+            public Abilities(decimal plasma, decimal gas, decimal liquid, decimal solid) {
                 this.plasma = plasma;
                 this.gas = gas;
                 this.liquid = liquid; 
@@ -84,14 +81,14 @@ namespace MTB {
          */
         public struct Skills {
             /* Data values */
-            public double armor; 
+            public decimal armor; 
             
-            public double technology;
+            public decimal technology;
 
             /**
              * @brief   Constructor
              */
-            public Skills(double armor, dobule technology) {
+            public Skills(decimal armor, decimal technology) {
                 this.armor = armor; 
                 this.technology = technology;
             } 
@@ -102,10 +99,10 @@ namespace MTB {
          */
         public struct Physics {
             /* Data values */
-            public double gravity; 
-            public double position;
-            public double speed;
-            public double acceleration;
+            public decimal gravity; 
+            public decimal position;
+            public decimal speed;
+            public decimal acceleration;
             
             /**
              * @brief   Constructor
@@ -114,7 +111,7 @@ namespace MTB {
              * @param   speed           ...
              * @param   acceleration    ...
              */
-            public Physics(double gravity, double position, double speed, double acceleration) {
+            public Physics(decimal gravity, decimal position, decimal speed, decimal acceleration) {
                 this.gravity = gravity; 
                 this.position = position;
                 this.speed = speed; 
