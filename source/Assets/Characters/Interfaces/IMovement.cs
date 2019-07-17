@@ -15,13 +15,11 @@ namespace MTB {
         float MoveSpeed {get; set;}
         float StrafeSpeed { get; set; }
         float JumpHeight { get; set; }
-        float Gravity { get; set; }
 
 
         /** 
          * @brief   move object
          */
-
         void Move(); 
 
         /** 

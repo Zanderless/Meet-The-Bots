@@ -25,7 +25,7 @@ namespace MTB {
         
         /* Entity data structs */
         /**
-         * @brief       entity attributes data struct 
+         * @brief       Entity attributes data struct 
          */
         public struct Attributes {
             /* Data values */
@@ -40,9 +40,9 @@ namespace MTB {
 
             /**
              * @brief   Constructor
-             * @param   fluid       entity life fluid
-             * @param   energy      entity life energy 
-             * @param   psyche      entity mental energy   
+             * @param   fluid       Entity life fluid
+             * @param   energy      Entity life energy 
+             * @param   psyche      Entity mental energy   
              */
             public Attributes(decimal fluid, decimal energy, decimal pysche) {
                 this.fluid = fluid;
@@ -52,7 +52,7 @@ namespace MTB {
         }
 
         /**
-         * @brief       entity abilities data struct 
+         * @brief       Entity abilities data struct 
          */
         public struct Abilities {
             /* Data values */
@@ -77,7 +77,7 @@ namespace MTB {
         }
 
         /**
-         * @brief       entity skills data struct 
+         * @brief       Entity skills data struct 
          */
         public struct Skills {
             /* Data values */
@@ -95,7 +95,7 @@ namespace MTB {
         }
 
         /**
-         * @brief       entity physics data struct 
+         * @brief       Entity physics data struct 
          */
         public struct Physics {
             /* Data values */

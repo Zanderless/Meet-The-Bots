@@ -32,12 +32,6 @@ namespace MTB {
         public float MoveSpeed { get; set; }
         public float StrafeSpeed { get; set; }
         public float JumpHeight { get; set; }
-        public float Gravity { get; set; }
-
-        //UI
-        public ProceduralImage healthUI;
-        public ProceduralImage armorUI;
-        public TextMeshProUGUI healthTxt;
 
         /** 
          * @brief   Start is called before the first frame update
@@ -101,6 +95,13 @@ namespace MTB {
          */
         public void Jump() {
             velocity.y = JumpHeight;
+        }
+
+        /** 
+         * @brief   jump
+         */
+        private void Action() {
+            
         }
 
         /** 
