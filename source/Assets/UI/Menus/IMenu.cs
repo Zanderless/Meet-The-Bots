@@ -15,21 +15,21 @@ namespace MTB {
         /**
          * @brief   construct a new menu 
          */
-        void construct();
+        void Construct();
 
         /**
          * @brief   setup a menu
          */
-        void setup();
+        void Setup();
 
         /**
          * @brief   open a menu 
          */
-        void open();
+        void Open();
 
         /**
          * @brief   close the active menu 
          */
-        void close();
+        void Close();
     }
 }

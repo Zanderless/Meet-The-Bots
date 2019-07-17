@@ -18,11 +18,6 @@ namespace MTB {
 
     public class Player : Entity, IDamageable, IHealable, IMovement {
 
-        private float MoveSpeed => 10f;
-        private float StrafeSpeed => 7f;
-        private float JumpHeight => 8f;
-        private float Gravity => 20f;
-
         public bool EnableDebug;
 
         private Vector3 velocity;
@@ -33,6 +28,11 @@ namespace MTB {
         public Vector2 mouseSensitivity;
         float verticalLookRotation;
         private Transform PCam => transform.GetChild(0);
+
+        public float MoveSpeed { get; set; }
+        public float StrafeSpeed { get; set; }
+        public float JumpHeight { get; set; }
+        public float Gravity { get; set; }
 
         //UI
         public ProceduralImage healthUI;
@@ -47,8 +47,6 @@ namespace MTB {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            Health = maxHealth;
-
         }
 
         /** 
@@ -56,11 +54,7 @@ namespace MTB {
          */
         private void Update() {
             Camera();
-            Movement();
-
-            healthUI.fillAmount = Mathf.Lerp(healthUI.fillAmount, Health / maxHealth, Time.deltaTime * 3);
-            armorUI.fillAmount = Mathf.Lerp(armorUI.fillAmount, Armor / maxArmor, Time.deltaTime * 3);
-            healthTxt.text = Health.ToString("000");
+            Move();
 
             if (Application.isEditor) {
                 if (Input.GetKeyDown(KeyCode.PageDown))
@@ -84,7 +78,7 @@ namespace MTB {
         /** 
          * @brief  
          */
-        private void Movement() {
+        public void Move() {
 
             float v = Input.GetAxis("Vertical") * MoveSpeed;
             float h = Input.GetAxis("Horizontal") * StrafeSpeed;
@@ -103,16 +97,9 @@ namespace MTB {
         }
 
         /** 
-         * @brief   move
-         */
-        void move() {
-                
-        }
-
-        /** 
          * @brief   jump
          */
-        private void Jump() {
+        public void Jump() {
             velocity.y = JumpHeight;
         }
 
@@ -143,32 +130,26 @@ namespace MTB {
          */
         public void TakeDamage(float d) {
             
-            if(Armor > 0) {
-                if (Armor < d) { 
-                    float diff = d - Armor;
-                    Armor = 0;
-                    Health -= diff;
-                }
-                else
-                    Armor -= d;
-            }
-            else {
-                Health -= d;
-            }
+            
         }
 
         /** 
          * @brief   
          */
         public void AddHealth(float h) {
-            Health += h;
+            
         }
 
         /** 
          * @brief   
          */
         public void AddArmor(float a) {
-            Armor += a;
+            
+        }
+
+        public void Action()
+        {
+
         }
     }
 }

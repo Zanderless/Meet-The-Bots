@@ -13,10 +13,10 @@ namespace MTB {
 
     namespace EntityData {
         /* Enitity Constants */
-        public readonly decimal GRAVITY = 9.8;
+        public readonly decimal GRAVITY = 9.8m;
 
         /* Entity enum types */
-        public static enum LifeState {
+        public enum LifeState {
             DEAD,
             ALIVE, 
             FATIGUED,
