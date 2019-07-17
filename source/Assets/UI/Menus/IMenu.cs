@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    interface IMenu {
+    public interface IMenu {
 
         /**
          * @brief   construct a new menu 
