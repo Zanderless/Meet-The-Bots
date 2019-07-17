@@ -36,9 +36,7 @@ namespace MTB {
          * @brief   On Death
          */
         public void die() {
-            
+
         }
-
-
     }
 }
