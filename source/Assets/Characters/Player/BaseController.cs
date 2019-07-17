@@ -13,7 +13,7 @@ using System;
 
 namespace MTB {
 
-    public class BaseController : CharacterController  {
+    public class BaseController : CharacterController {
 
     }
 
