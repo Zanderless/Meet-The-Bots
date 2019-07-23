@@ -13,7 +13,7 @@ namespace MTB {
 
     public interface IEntity {
         
-        void die();
+        void Die();
 
     }
 }
