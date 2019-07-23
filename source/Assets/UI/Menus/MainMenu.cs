@@ -10,7 +10,8 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class MainMenu : IMenu {
+    public class MainMenu : IMenu
+    {
 
         /**
          * @brief   Construct a new menu 
@@ -43,4 +44,5 @@ namespace MTB {
         {
 
         }
+    }
 }
