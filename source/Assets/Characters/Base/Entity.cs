@@ -9,26 +9,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using EntityData;
+using MTB;
 
 namespace MTB {
 
     public class Entity : MonoBehaviour {
 
         /* Entity Data */
-        private EntityData.Attributes _attributes;
+        private Attributes _attributes;
 
-        public EntityData.Attributes Attributes  {
+        public Attributes Attributes  {
             get { return _attributes; }
-            set { _attribute = value; }
+            set { _attributes = value; }
         }
 
         /**
          * @brief   Constructor
          */
         public Entity() {
-            _attributes = new Attributes(EntityData.maxHealth, 
-                                         EntityData.maxStamina, 
+            _attributes = new Attributes(EntityData.maxFluid, 
+                                         EntityData.maxEnergy, 
                                          EntityData.maxPsyche);
         }
     }
