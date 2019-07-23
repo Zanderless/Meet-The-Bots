@@ -14,19 +14,22 @@ using EntityData;
 namespace MTB {
 
     public class Entity : MonoBehaviour {
-        /* Entity Data */
-        private Attributes _attributes;
 
-        public Attributes Attributes  {
+        /* Entity Data */
+        private EntityData.Attributes _attributes;
+
+        public EntityData.Attributes Attributes  {
             get { return _attributes; }
-            set { attributes = _attribute; }
+            set { _attribute = value; }
         }
 
         /**
          * @brief   Constructor
          */
         public Entity() {
-            attributes = new Attributes(maxHealth, maxStamina, maxPsyche);
+            _attributes = new Attributes(EntityData.maxHealth, 
+                                         EntityData.maxStamina, 
+                                         EntityData.maxPsyche);
         }
     }
 }
