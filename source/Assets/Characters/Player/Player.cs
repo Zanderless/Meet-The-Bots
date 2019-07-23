@@ -11,12 +11,14 @@ using UnityEngine.UI.ProceduralImage;
 using TMPro;
 using System;
 
-namespace MTB {
+namespace MTB
+{
 
     [RequireComponent(typeof(CharacterController))]
     [DisallowMultipleComponent]
 
-    public class Player : Entity, IDamageable, IHealable, IMovement {
+    public class Player : Entity, IDamageable, IHealable, IMovement
+    {
 
         public bool EnableDebug;
 
@@ -32,17 +34,12 @@ namespace MTB {
         public float MoveSpeed { get; set; }
         public float StrafeSpeed { get; set; }
         public float JumpHeight { get; set; }
-        public float Gravity { get; set; }
-
-        //UI
-        public ProceduralImage healthUI;
-        public ProceduralImage armorUI;
-        public TextMeshProUGUI healthTxt;
 
         /** 
          * @brief   Start is called before the first frame update
          */
-        private void Start() {
+        private void Start()
+        {
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -52,11 +49,13 @@ namespace MTB {
         /** 
          * @brief   Update is called every frame 
          */
-        private void Update() {
+        private void Update()
+        {
             Camera();
             Move();
 
-            if (Application.isEditor) {
+            if (Application.isEditor)
+            {
                 if (Input.GetKeyDown(KeyCode.PageDown))
                     TakeDamage(5);
                 else if (Input.GetKeyDown(KeyCode.PageUp))
@@ -68,7 +67,8 @@ namespace MTB {
         /** 
          * @brief  
          */
-        private void Camera() {
+        private void Camera()
+        {
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity.x);
             verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivity.y;
             verticalLookRotation = Mathf.Clamp(verticalLookRotation, -60, 60);
@@ -78,7 +78,8 @@ namespace MTB {
         /** 
          * @brief  
          */
-        public void Move() {
+        public void Move()
+        {
 
             float v = Input.GetAxis("Vertical") * MoveSpeed;
             float h = Input.GetAxis("Horizontal") * StrafeSpeed;
@@ -86,7 +87,7 @@ namespace MTB {
             velocity = new Vector3(h, velocity.y, v);
 
             velocity = transform.TransformDirection(velocity);
-            
+
             if (Input.GetButtonDown("Jump") && Controller.isGrounded)
                 Jump();
 
@@ -99,20 +100,31 @@ namespace MTB {
         /** 
          * @brief   jump
          */
-        public void Jump() {
+        public void Jump()
+        {
             velocity.y = JumpHeight;
+        }
+
+        /** 
+         * @brief   jump
+         */
+        private void Action()
+        {
+
         }
 
         /** 
          * @brief   
          */
-        private void OnGUI() {
+        private void OnGUI()
+        {
 
             GUIStyle style = new GUIStyle();
             style.fontSize = 15;
             style.normal.textColor = Color.white;
 
-            if (EnableDebug) {
+            if (EnableDebug)
+            {
                 GUI.Label(new Rect(10, 5, 100, 20), "Player Debug Stats", style);
 
                 var vel = new Vector3(velocity.x / MoveSpeed, 0, velocity.z / StrafeSpeed);
@@ -128,23 +140,26 @@ namespace MTB {
         /** 
          * @brief   
          */
-        public void TakeDamage(float d) {
-            
-            
+        public void TakeDamage(float d)
+        {
+
+
         }
 
         /** 
          * @brief   
          */
-        public void AddHealth(float h) {
-            
+        public void AddHealth(float h)
+        {
+
         }
 
         /** 
          * @brief   
          */
-        public void AddArmor(float a) {
-            
+        public void AddArmor(float a)
+        {
+
         }
 
         public void Action()

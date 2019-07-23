@@ -9,30 +9,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using MTB;
+
 namespace MTB {
 
-    public class Entity : MonoBehaviour, IEntity {
+    public class Entity : MonoBehaviour {
+
         /* Entity Data */
-        private Attributes attributes;
+        private Attributes _attributes;
 
-        public attributes Attributes {
-            get { return attributes; }
-            set { attributes = attributesData; }
+        public Attributes Attributes  {
+            get { return _attributes; }
+            set { _attributes = value; }
         }
-
 
         /**
          * @brief   Constructor
          */
         public Entity() {
-            attributes = new Attributes(maxHealth, maxStamina, maxPsyche);
-        }
-
-        /**
-         * @brief   On Death
-         */
-        public void die() {
-
+            _attributes = new Attributes(EntityData.maxFluid, 
+                                         EntityData.maxEnergy, 
+                                         EntityData.maxPsyche);
         }
     }
 }
