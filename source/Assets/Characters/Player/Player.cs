@@ -44,6 +44,10 @@ namespace MTB
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
+            MoveSpeed = 10f;
+            StrafeSpeed = 7f;
+            JumpHeight = 10f;
+
         }
 
         /** 
@@ -91,7 +95,7 @@ namespace MTB
             if (Input.GetButtonDown("Jump") && Controller.isGrounded)
                 Jump();
 
-            velocity.y -= Gravity * Time.deltaTime;
+            velocity.y -= 20f * Time.deltaTime;
 
             Controller.Move(velocity * Time.deltaTime);
 
@@ -108,7 +112,7 @@ namespace MTB
         /** 
          * @brief   jump
          */
-        private void Action()
+        public void Action()
         {
 
         }
@@ -158,11 +162,6 @@ namespace MTB
          * @brief   
          */
         public void AddArmor(float a)
-        {
-
-        }
-
-        public void Action()
         {
 
         }

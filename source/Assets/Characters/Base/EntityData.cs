@@ -17,9 +17,10 @@ namespace MTB
 
     public class EntityData
     {
-        public readonly decimal maxFluid;
-        public readonly decimal maxEnergy;
-        public readonly decimal maxPsyche;
+        public static readonly decimal maxFluid = 100;
+        public static readonly decimal maxEnergy;
+        public static readonly decimal maxPsyche;
+
     }
 
     /* Entity enum types */
