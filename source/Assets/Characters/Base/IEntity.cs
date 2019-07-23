@@ -11,7 +11,9 @@ using UnityEngine;
 
 namespace MTB {
 
-    interface IEntity {
+    public interface IEntity {
         
+        void die();
+
     }
 }

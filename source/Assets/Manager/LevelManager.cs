@@ -14,30 +14,30 @@ namespace MTB {
     public class LevelManager : IManager {
 
         /**
-         *  @brief  load an existing item 
+         *  @brief  Load an existing item 
          */
-        void load() {
+        public void Load() {
 
         }
 
         /**
-         *  @brief  save the current active item
+         *  @brief  Save the current active item
          */
-        void save() {
+        public void Save() {
             
         }
 
         /**
-         *  @brief  destroy an exusting item
+         *  @brief  Destroy an exusting item
          */
-        void destroy() {
+        public void Destroy() {
             
         }
 
         /**
-         *  @brief  create a new item
+         *  @brief  Create a new item
          */
-        void create() {
+        public void Create() {
             
         }
     }

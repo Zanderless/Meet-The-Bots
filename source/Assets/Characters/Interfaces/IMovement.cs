@@ -8,31 +8,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MTB {
+namespace MTB
+{
 
-    public interface IMovement {
+    public interface IMovement
+    {
 
-        private float MoveSpeed => 10f;
-        private float StrafeSpeed => 7f;
-        private float JumpHeight => 8f;
-        private float Gravity => 20f;
+        float MoveSpeed { get; set; }
+        float StrafeSpeed { get; set; }
+        float JumpHeight { get; set; }
 
 
         /** 
          * @brief   move object
          */
-        
-        void move(); 
+        void Move();
 
         /** 
          * @brief   jump
          */
-        
-        void jump(); 
-        
+
+        void Jump();
+
         /** 
         * @brief   perform action
         */
-        void action();
+        void Action();
     }
 }

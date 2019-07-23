@@ -9,66 +9,124 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MTB {
+namespace MTB
+{
 
-    namespace EntityData {
+    // /* Enitity Constants */
+    // public readonly decimal GRAVITY = 9.8;
 
-        public struct Attributes {
+    public class EntityData
+    {
+        public readonly decimal maxFluid;
+        public readonly decimal maxEnergy;
+        public readonly decimal maxPsyche;
+    }
 
-            public readonly double maxHealth; 
+    /* Entity enum types */
+    public enum LifeState
+    {
+        DEAD,
+        ALIVE,
+        FATIGUED,
+        STASIS,
+    }
 
-            public readonly double maxStamina; 
-            
-            public readonly double maxPsyche; 
-            
-            public double heatlh;
+    /* Entity data structs */
+    /**
+     * @brief       Entity attributes data struct 
+     */
+    public struct Attributes
+    {
+        /* Data values */
+        public decimal fluid;
+        public decimal energy;
+        public decimal pysche;
 
-            public decimal stamina;
-
-            public decimal pysche;
-
-            /**
-            * @brief   constructor
-            */
-            public Attributes(double health, decimal stamina, decimal pysche) {
-                this.health = health;
-                this.stamina = stamina;
-                this.pysche = pysche;
-            }
+        /**
+         * @brief   Constructor
+         * @param   fluid       Entity life fluid
+         * @param   energy      Entity life energy 
+         * @param   psyche      Entity mental energy   
+         */
+        public Attributes(decimal fluid, decimal energy, decimal pysche)
+        {
+            this.fluid = fluid;
+            this.energy = energy;
+            this.pysche = pysche;
         }
+    }
 
-        public struct Abilities {
-            public double plasma;
+    /**
+     * @brief       Entity abilities data struct 
+     */
+    public struct Abilities
+    {
+        /* Data values */
+        public decimal plasma;
+        public decimal gas;
+        public decimal liquid;
+        public decimal solid;
 
-            public double gas;
-
-            public double liquid;
-
-            public double solid;
-
-            /**
-            * @brief   constructor
-            */
-            public Abilities(double plasma, double gas, double liquid, double plasma) {
-                this.plasma = plasma;
-                this.gas = gas;
-                this.liquid = liquid; 
-                this.solid = solid;
-            }
+        /**
+         * @brief   Constructor
+         * @param   plasma      ...
+         * @param   gas         ...
+         * @param   liquid      ...
+         * @param   solid       ...
+         */
+        public Abilities(decimal plasma, decimal gas, decimal liquid, decimal solid)
+        {
+            this.plasma = plasma;
+            this.gas = gas;
+            this.liquid = liquid;
+            this.solid = solid;
         }
+    }
 
-        public struct Skills {
-            public double armor; 
-            
-            public double technology;
+    /**
+     * @brief       Entity skills data struct 
+     */
+    public struct Skills
+    {
+        /* Data values */
+        public decimal armor;
 
-            /**
-            * @brief   constructor
-            */
-            public Skills(double armor, dobule technology) {
-                this.armor = armor; 
-                this.technology = technology;
-            } 
+        public decimal technology;
+
+        /**
+         * @brief   Constructor
+         */
+        public Skills(decimal armor, decimal technology)
+        {
+            this.armor = armor;
+            this.technology = technology;
+        }
+    }
+
+    /**
+     * @brief       Entity physics data struct 
+     */
+    public struct Physics
+    {
+        /* Data values */
+        public decimal mass;
+        public decimal position;
+        public decimal speed;
+        public decimal acceleration;
+
+        /**
+         * @brief   Constructor
+         * @param   mass         ...
+         * @param   position        ...
+         * @param   speed           ...
+         * @param   acceleration    ...
+         */
+        public Physics(decimal mass, decimal position, decimal speed, decimal acceleration)
+        {
+            this.mass = mass;
+            this.position = position;
+            this.speed = speed;
+            this.acceleration = acceleration;
         }
     }
 }
