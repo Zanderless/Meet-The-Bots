@@ -1,8 +1,8 @@
 /**
  * @file       : Dummy.cs
- * @author     :
- * @description:
- * @note    
+ * @author     : Jakob P.
+ * @description: This is just a test enemy that takes damage only
+ * @note       : 
  */
 using System.Collections;
 using System.Collections.Generic;
