@@ -10,28 +10,35 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Json : MonoBehaviour {
-
-        public string dataPath;
+    public static class Json {
         
         /**
          * @brief   Load Json data
          */
-        public void LoadData() {
+        public static T LoadData<T>(string path) {
+
+            TextAsset text = Resources.Load(path) as TextAsset;
+
+            try
+            {
+                return JsonUtility.FromJson<T>(text.text);
+            }
+            catch
+            {
+                Debug.LogError("Cannot find file from path \n" + path);
+            }
+
+            return default(T);
 
         }
 
         /**
          * @brief   Store Json data
          */
-        public  void StoreData() {
+        public static void StoreData() {
+
+            //Saves Data to a Json file using JsonUtility.ToJson
 
         }
-
-        /**
-         * @brief   Constructor
-         */
-         Json()
-         {}
     }
 }

@@ -22,7 +22,9 @@ namespace MTB
 
         private void Start()
         {
-            LoadData();
+            info = new WeaponInfo();
+            info = Json.LoadData<WeaponInfo>(dataPath);
+            print(info.WeaponName);
         }
 
         void LoadData()
