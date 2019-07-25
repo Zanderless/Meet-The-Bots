@@ -48,7 +48,6 @@ namespace MTB
     [System.Serializable]
     public class WeaponInfo
     {
-
         public string WeaponName;
         public float MaxAmmo;
         public float MaxStoredAmmo;
