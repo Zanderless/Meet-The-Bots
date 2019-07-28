@@ -17,33 +17,80 @@ namespace MTB
         [Tooltip("Insert path to weapon json file. Don't include Assets or Resources folder \n EX. Weapon/Data/Pistol")]
         public string dataPath;
 
-        //private variables
+        //Private Variables
         private WeaponInfo info;
+        private int ammo;
+        private int storedAmmo;
+
+        #region Private Methods
 
         private void Start()
         {
-            info = new WeaponInfo();
             info = Json.LoadData<WeaponInfo>(dataPath);
-            print(info.WeaponName);
+
+            ammo = info.MaxAmmo;
+            storedAmmo = info.MaxStoredAmmo;
         }
 
-        void LoadData()
+        private void Update()
+        {
+            
+            if(Input.GetAxisRaw("Fire") == 1 && ammo > 0)
+            {
+                Fire();
+            }
+
+            if(ammo < info.MaxAmmo && storedAmmo > 0)
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                    Reload();
+            }
+
+        }
+
+        private void Fire()
         {
 
-            TextAsset text = Resources.Load(dataPath) as TextAsset;
-
-            try
-            {
-                info = JsonUtility.FromJson<WeaponInfo>(text.text);
-            }
-            catch
-            {
-                Debug.LogError("Cannot find file from path");
-            }
-
-            print(info.WeaponName);
+            if (info.UsesAmmo)
+                ammo--;
 
         }
+
+        private void Reload()
+        {
+
+            if (storedAmmo >= ammo)
+            {
+                int t = info.MaxAmmo - ammo;
+                storedAmmo -= t;
+                ammo = info.MaxAmmo;
+            }
+            else if (storedAmmo < ammo)
+            {
+                int amo = info.MaxAmmo - ammo;
+                if(amo >= storedAmmo)
+                {
+                    int t = amo - storedAmmo;
+                    ammo += t;
+                    storedAmmo = 0;
+                }
+                else if(amo < storedAmmo)
+                {
+                    int t = storedAmmo - amo;
+                    ammo = info.MaxAmmo;
+                    storedAmmo -= t;
+                }
+            }
+        }
+
+        private void OnGUI()
+        {
+
+            GUI.Box(new Rect(0, 0, 100, 20), ammo + "/" + storedAmmo);
+
+        }
+
+        #endregion
 
     }
 
@@ -51,8 +98,8 @@ namespace MTB
     public class WeaponInfo
     {
         public string WeaponName;
-        public float MaxAmmo;
-        public float MaxStoredAmmo;
+        public int MaxAmmo;
+        public int MaxStoredAmmo;
         public float FireRate;
         public float Damage;
         public float ShotDistance;
