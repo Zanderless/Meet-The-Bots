@@ -108,6 +108,7 @@ namespace MTB
         public bool UsesAmmo;
         public bool UsesProjectile;
         public string ProjectilePrefab;
+        public int ReloadType; //0 for Clip, 1 for Shell
 
     }
 }
