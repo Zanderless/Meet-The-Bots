@@ -9,5 +9,6 @@
   "IsAutomatic": false,
   "UsesAmmo": true,
   "UsesProjectiles": false,
-  "ProjectilePrefab": null
+  "ProjectilePrefab": null,
+  "ReloadType": 0
 }
