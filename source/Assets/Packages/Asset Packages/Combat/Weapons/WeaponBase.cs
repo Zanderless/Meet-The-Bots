@@ -1,5 +1,5 @@
 ﻿/**
- * @file       : Entity.cs
+ * @file       : WeaponBase.cs
  * @author     : Jakob P.
  * @description: The script that handles all weapon logic
  * @note       : This script belongs on the actual gun/fps arms prefab
@@ -10,15 +10,13 @@ using UnityEngine;
 
 namespace MTB
 {
-    public class WeaponBase : MonoBehaviour
+    public abstract class WeaponBase : MonoBehaviour
     {
 
         //Public Variables
-        [Tooltip("Insert path to weapon json file. Don't include Assets or Resources folder \n EX. Weapon/Data/Pistol")]
-        public string dataPath;
+        public WeaponInfo info;
 
         //Private Variables
-        private WeaponInfo info;
         private int ammo;
         private int storedAmmo;
 
@@ -26,10 +24,9 @@ namespace MTB
 
         private void Start()
         {
-            info = Json.LoadData<WeaponInfo>(dataPath);
 
-            ammo = info.MaxAmmo;
-            storedAmmo = info.MaxStoredAmmo;
+            ammo = info.maxAmmo;
+            storedAmmo = info.maxStoredAmmo;
         }
 
         private void Update()
@@ -40,47 +37,12 @@ namespace MTB
                 Fire();
             }
 
-            if(ammo < info.MaxAmmo && storedAmmo > 0)
+            if(ammo < info.maxAmmo && storedAmmo > 0)
             {
                 if (Input.GetKeyDown(KeyCode.R))
                     Reload();
             }
 
-        }
-
-        private void Fire()
-        {
-
-            if (info.UsesAmmo)
-                ammo--;
-
-        }
-
-        private void Reload()
-        {
-
-            if (storedAmmo >= ammo)
-            {
-                int t = info.MaxAmmo - ammo;
-                storedAmmo -= t;
-                ammo = info.MaxAmmo;
-            }
-            else if (storedAmmo < ammo)
-            {
-                int amo = info.MaxAmmo - ammo;
-                if(amo >= storedAmmo)
-                {
-                    int t = amo - storedAmmo;
-                    ammo += t;
-                    storedAmmo = 0;
-                }
-                else if(amo < storedAmmo)
-                {
-                    int t = storedAmmo - amo;
-                    ammo = info.MaxAmmo;
-                    storedAmmo -= t;
-                }
-            }
         }
 
         private void OnGUI()
@@ -92,23 +54,85 @@ namespace MTB
 
         #endregion
 
+        #region Public Methods
+
+        public int Ammo
+        {
+            get { return ammo; }
+            set
+            {
+                ammo = value;
+                ammo = Mathf.Clamp(ammo, 0, info.maxAmmo);
+            }
+        }
+
+        public int StoredAmmo
+        {
+            get { return storedAmmo; }
+            set
+            {
+                storedAmmo = value;
+                storedAmmo = Mathf.Clamp(storedAmmo, 0, info.maxStoredAmmo);
+            }
+        }
+
+        public virtual void Fire()
+        {
+
+            if (info.usesAmmo)
+                ammo--;
+
+        }
+
+        public virtual void Reload()
+        {
+
+            if (storedAmmo >= ammo)
+            {
+                storedAmmo -= (info.maxAmmo - ammo);
+                ammo = info.maxAmmo;
+            }
+            else if (storedAmmo < ammo)
+            {
+                int ammoDiff = info.maxAmmo - ammo;
+                if (ammoDiff >= storedAmmo)
+                {
+                    ammo += (ammoDiff - storedAmmo);
+                    storedAmmo = 0;
+                }
+                else if (ammoDiff < storedAmmo)
+                {
+                    ammo = info.maxAmmo;
+                    storedAmmo -= (storedAmmo - ammoDiff);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
-    [System.Serializable]
-    public class WeaponInfo
+    [CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon", order = 0)]
+    public class WeaponInfo : ScriptableObject
     {
-        public string WeaponName;
-        public int MaxAmmo;
-        public int MaxStoredAmmo;
-        public float FireRate;
-        public float Damage;
-        public float ShotDistance;
-        public string WeaponPrefab;
-        public bool IsAutomatic;
-        public bool UsesAmmo;
-        public bool UsesProjectile;
-        public string ProjectilePrefab;
-        public int ReloadType; //0 for Clip, 1 for Shell
+        public string weaponName;
+        public int maxAmmo;
+        public int maxStoredAmmo;
+        public float fireRate;
+        public float damage;
+        public AnimationCurve damageFalloff;
+        public float shotDistance;
+        public string weaponPrefab;
+        public bool isAutomatic;
+        public bool usesAmmo;
+        public bool usesProjectile;
+        public GameObject projectilePrefab;
+        public enum ReloadType
+        {
+            Clip,
+            Shell
+        }
+        public ReloadType reloadType;
 
     }
 }
