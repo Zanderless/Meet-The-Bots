@@ -41,10 +41,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  shotDistance: 0
+  shotDistance: 1000
   weaponPrefab: 
   isAutomatic: 0
-  usesAmmo: 0
+  usesAmmo: 1
   usesProjectile: 0
   projectilePrefab: {fileID: 0}
   reloadType: 0

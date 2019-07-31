@@ -82,6 +82,30 @@ namespace MTB
             if (info.usesAmmo)
                 ammo--;
 
+            if(!info.usesProjectile)
+                RayCast();
+
+        }
+
+        public virtual void RayCast()
+        {
+
+            RaycastHit hit;
+
+            if(UnityEngine.Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, info.shotDistance))
+            {
+
+                if (hit.transform.GetComponent<Entity>())
+                {
+
+                    float modifiedDamage = info.damage * info.damageFalloff.Evaluate(hit.distance / info.shotDistance);
+
+                    print(modifiedDamage);
+
+                }
+
+            }
+
         }
 
         public virtual void Reload()
