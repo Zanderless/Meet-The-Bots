@@ -12,11 +12,8 @@ namespace MTB
 {
     public class TestWeapon : WeaponBase
     {
-        
-        public override void Reload()
-        {
-            print("You thought you were gonna reload, but its me, DIO");
-        }
+
+
 
     }
 }
