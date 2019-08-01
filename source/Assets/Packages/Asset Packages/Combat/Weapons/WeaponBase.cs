@@ -13,123 +13,101 @@ namespace MTB
     public abstract class WeaponBase : MonoBehaviour
     {
 
-        //Public Variables
-        public WeaponInfo info;
+        #region Public Variables
+        public WeaponInfo weaponInfo;
+        public AudioSource source;
+        #endregion
 
-        //Private Variables
-        private int ammo;
-        private int storedAmmo;
+        #region Private Variables
+        private float ammo;
+        private float storedAmmo;
+
+        private Vector3 recoilSmoothDampVelocity;
+        private float recoilRotSmoothDampVelocity;
+        private float recoilAngle;
+
+        private float nextShotTime;
+        private int shotsLeftInBurst;
+
+        private bool isReloading;
+        private bool triggeReleasedFromLastFire;
+        #endregion
 
         #region Private Methods
 
-        private void Start()
+        void Start()
         {
-
-            ammo = info.maxAmmo;
-            storedAmmo = info.maxStoredAmmo;
+            shotsLeftInBurst = weaponInfo.burstAmmont;
+            source = GetComponent<AudioSource>();
         }
 
-        private void Update()
+        void LateUpdate()
         {
-            
-            if(Input.GetAxisRaw("Fire") == 1 && ammo > 0)
-            {
-                Fire();
-            }
-
-            if(ammo < info.maxAmmo && storedAmmo > 0)
-            {
-                if (Input.GetKeyDown(KeyCode.R))
-                    Reload();
-            }
-
+            ResetRecoil();
         }
 
-        private void OnGUI()
+        private void ResetRecoil()
         {
+            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, weaponInfo.recoilMoveSettleTime);
 
-            GUI.Box(new Rect(0, 0, 100, 20), ammo + "/" + storedAmmo);
+            if (!isReloading)
+            {
+                recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilRotSmoothDampVelocity, recoilRotSmoothDampVelocity);
+                transform.localEulerAngles = Vector3.left * recoilAngle;
+            }
+        }
 
+        protected void Recoil()
+        {
+            transform.localPosition -= Vector3.forward * Random.Range(weaponInfo.kickMinMax.x, weaponInfo.kickMinMax.y);
+            recoilAngle += Random.Range(weaponInfo.recoilAngleMinMax.x, weaponInfo.recoilAngleMinMax.y);
+            recoilAngle = Mathf.Clamp(recoilAngle, 0, 30);
         }
 
         #endregion
 
         #region Public Methods
 
-        public int Ammo
-        {
-            get { return ammo; }
-            set
-            {
-                ammo = value;
-                ammo = Mathf.Clamp(ammo, 0, info.maxAmmo);
-            }
-        }
-
-        public int StoredAmmo
-        {
-            get { return storedAmmo; }
-            set
-            {
-                storedAmmo = value;
-                storedAmmo = Mathf.Clamp(storedAmmo, 0, info.maxStoredAmmo);
-            }
-        }
-
         public virtual void Fire()
         {
 
-            if (info.usesAmmo)
-                ammo--;
+            if(!isReloading && Time.time > nextShotTime && ammo > 0)
+            {
 
-            if(!info.usesProjectile)
-                RayCast();
+                if (weaponInfo.fireMode == WeaponInfo.FireMode.Burst)
+                {
+                    if (shotsLeftInBurst == 0)
+                        return;
+                    shotsLeftInBurst--;
+                }
+                else if (weaponInfo.fireMode == WeaponInfo.FireMode.Single)
+                    if (!triggeReleasedFromLastFire) return;
+
+            }
+
+            nextShotTime = Time.time + weaponInfo.fireRate;
+
+            ammo--;
+
+            if (!weaponInfo.usesProjectile)
+                RaycastShot();
+
+            Recoil();
+
+            source.PlayOneShot(weaponInfo.shootAudio, 1);
 
         }
 
-        public virtual void RayCast()
+        public virtual void RaycastShot()
         {
 
-            RaycastHit hit;
-
-            if(UnityEngine.Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, info.shotDistance))
-            {
-
-                if (hit.transform.GetComponent<Entity>())
-                {
-
-                    float modifiedDamage = info.damage * info.damageFalloff.Evaluate(hit.distance / info.shotDistance);
-
-                    print(modifiedDamage);
-
-                }
-
-            }
+            print("Fire");
 
         }
 
-        public virtual void Reload()
+        public virtual void ProjectileShot()
         {
 
-            if (storedAmmo >= ammo)
-            {
-                storedAmmo -= (info.maxAmmo - ammo);
-                ammo = info.maxAmmo;
-            }
-            else if (storedAmmo < ammo)
-            {
-                int ammoDiff = info.maxAmmo - ammo;
-                if (ammoDiff >= storedAmmo)
-                {
-                    ammo += (ammoDiff - storedAmmo);
-                    storedAmmo = 0;
-                }
-                else if (ammoDiff < storedAmmo)
-                {
-                    ammo = info.maxAmmo;
-                    storedAmmo -= (storedAmmo - ammoDiff);
-                }
-            }
         }
 
         #endregion
@@ -139,24 +117,63 @@ namespace MTB
     [CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon", order = 0)]
     public class WeaponInfo : ScriptableObject
     {
-        public string weaponName;
-        public int maxAmmo;
-        public int maxStoredAmmo;
-        public float fireRate;
-        public float damage;
-        public AnimationCurve damageFalloff;
-        public float shotDistance;
-        public string weaponPrefab;
-        public bool isAutomatic;
-        public bool usesAmmo;
-        public bool usesProjectile;
-        public GameObject projectilePrefab;
+
+        public enum FireMode
+        {
+            Single,
+            Burst,
+            Automatic
+        }
+
+        public enum RecoilMode
+        {
+            None,
+            Low,
+            Normal,
+            High
+        }
+
         public enum ReloadType
         {
             Clip,
-            Shell
+            Single
         }
+
+        [Header("Stats")]
+        public string weaponName;
+        public FireMode fireMode;
+        public float fireRate;
+        public int burstAmmont;
+        public bool usesAmmo;
+        public int maxAmmo;
+        public int maxStoredAmmo;
+
+        [Header("Reload")]
+        public float reloadTime;
         public ReloadType reloadType;
+
+        [Header("Projectile")]
+        public bool usesProjectile;
+        public GameObject projectile;
+        public float projectileVelocity;
+
+        [Header("Raycast")]
+        public float shotDistance;
+
+        [Header("Damage")]
+        public float damage;
+        public AnimationCurve damageFalloff;
+
+        [Header("Recoil")]
+        public Vector2 kickMinMax;
+        public Vector2 recoilAngleMinMax;
+        public float recoilMoveSettleTime;
+        public float recoilRotationSettleTime;
+        public RecoilMode recoilMode;
+
+        [Header("Sounds")]
+        public AudioClip shootAudio;
+        public AudioClip reloadAudio;
 
     }
 }
