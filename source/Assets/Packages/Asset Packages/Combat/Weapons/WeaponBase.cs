@@ -19,8 +19,8 @@ namespace MTB
         #endregion
 
         #region Private Variables
-        private float ammo;
-        private float storedAmmo;
+        private int ammo;
+        private int storedAmmo;
 
         private Vector3 recoilSmoothDampVelocity;
         private float recoilRotSmoothDampVelocity;
@@ -31,37 +31,24 @@ namespace MTB
 
         private bool isReloading;
         private bool triggeReleasedFromLastFire;
+
+        private Transform pCam;
         #endregion
 
         #region Private Methods
 
-        void Start()
+        void Awake()
         {
             shotsLeftInBurst = weaponInfo.burstAmmont;
             source = GetComponent<AudioSource>();
+            ammo = weaponInfo.maxAmmo;
+            storedAmmo = weaponInfo.maxStoredAmmo;
+            triggeReleasedFromLastFire = true;
         }
 
-        void LateUpdate()
+        private void OnGUI()
         {
-            ResetRecoil();
-        }
-
-        private void ResetRecoil()
-        {
-            transform.localPosition = Vector3.SmoothDamp(transform.localPosition, Vector3.zero, ref recoilSmoothDampVelocity, weaponInfo.recoilMoveSettleTime);
-
-            if (!isReloading)
-            {
-                recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilRotSmoothDampVelocity, recoilRotSmoothDampVelocity);
-                transform.localEulerAngles = Vector3.left * recoilAngle;
-            }
-        }
-
-        protected void Recoil()
-        {
-            transform.localPosition -= Vector3.forward * Random.Range(weaponInfo.kickMinMax.x, weaponInfo.kickMinMax.y);
-            recoilAngle += Random.Range(weaponInfo.recoilAngleMinMax.x, weaponInfo.recoilAngleMinMax.y);
-            recoilAngle = Mathf.Clamp(recoilAngle, 0, 30);
+            GUI.Box(new Rect(0, 0, 100, 20), ammo + "/" + storedAmmo);
         }
 
         #endregion
@@ -71,7 +58,7 @@ namespace MTB
         public virtual void Fire()
         {
 
-            if(!isReloading && Time.time > nextShotTime && ammo > 0)
+            if (!isReloading && Time.time > nextShotTime && ammo > 0)
             {
 
                 if (weaponInfo.fireMode == WeaponInfo.FireMode.Burst)
@@ -83,18 +70,18 @@ namespace MTB
                 else if (weaponInfo.fireMode == WeaponInfo.FireMode.Single)
                     if (!triggeReleasedFromLastFire) return;
 
+                nextShotTime = Time.time + weaponInfo.fireRate;
+
+                ammo--;
+
+                if (!weaponInfo.usesProjectile)
+                    RaycastShot();
+
+                //source.PlayOneShot(weaponInfo.shootAudio, 1);
+
+                triggeReleasedFromLastFire = false;
+
             }
-
-            nextShotTime = Time.time + weaponInfo.fireRate;
-
-            ammo--;
-
-            if (!weaponInfo.usesProjectile)
-                RaycastShot();
-
-            Recoil();
-
-            source.PlayOneShot(weaponInfo.shootAudio, 1);
 
         }
 
@@ -108,6 +95,63 @@ namespace MTB
         public virtual void ProjectileShot()
         {
 
+        }
+
+        public virtual void Reload()
+        {
+            if (storedAmmo >= ammo)
+            {
+                int t = weaponInfo.maxAmmo - ammo;
+                storedAmmo -= t;
+                ammo = weaponInfo.maxAmmo;
+            }
+            else if (storedAmmo < ammo)
+            {
+                int amo = weaponInfo.maxAmmo - ammo;
+                if (amo >= storedAmmo)
+                {
+                    int t = amo - storedAmmo;
+                    ammo += t;
+                    storedAmmo = 0;
+                }
+                else if (amo < storedAmmo)
+                {
+                    int t = storedAmmo - amo;
+                    ammo = weaponInfo.maxAmmo;
+                    storedAmmo -= t;
+                }
+            }
+        }
+
+        public int Ammo
+        {
+            get { return ammo; }
+            set
+            {
+                ammo = value;
+                ammo = Mathf.Clamp(ammo, 0, weaponInfo.maxAmmo);
+            }
+        }
+
+        public int StoredAmmo
+        {
+            get { return storedAmmo; }
+            set
+            {
+                storedAmmo = value;
+                storedAmmo = Mathf.Clamp(storedAmmo, 0, weaponInfo.maxStoredAmmo);
+            }
+        }
+
+        public void TriggerDown()
+        {
+            Fire();
+        }
+
+        public void TriggerUp()
+        {
+            triggeReleasedFromLastFire = true;
+            shotsLeftInBurst = weaponInfo.burstAmmont;
         }
 
         #endregion

@@ -13,7 +13,5 @@ namespace MTB
     public class TestWeapon : WeaponBase
     {
 
-
-
     }
 }
