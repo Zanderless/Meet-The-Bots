@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: New Weapon
+  m_Name: PistolTest
   m_EditorClassIdentifier: Assembly-CSharp:MTB:WeaponInfo
   weaponName: Pistol
   fireMode: 0
-  fireRate: 0.04
+  fireRate: 0.07
   burstAmmont: 0
   usesAmmo: 1
   maxAmmo: 8
   maxStoredAmmo: 128
-  reloadTime: 0.2
+  reloadTime: 2
   reloadType: 0
   usesProjectile: 0
   projectile: {fileID: 0}
@@ -32,20 +32,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -3.4479613
-      outSlope: -3.4479613
+      inSlope: -3.0917673
+      outSlope: -3.0917673
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.03762136
+      outWeight: 0.026699029
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.0804164
-      outSlope: -0.0804164
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.17597085
+      inWeight: 0.12257284
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
