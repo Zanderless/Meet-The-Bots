@@ -118,7 +118,7 @@ namespace MTB
         public virtual void RaycastShot()
         {
 
-            if (RayCast())
+            if(RayCast())
             {
                 Entity entity = hit.transform.GetComponent<Entity>();
 
