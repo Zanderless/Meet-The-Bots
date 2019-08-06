@@ -30,9 +30,12 @@ namespace MTB
         private int shotsLeftInBurst;
 
         private bool isReloading;
-        private bool triggeReleasedFromLastFire;
+        private bool triggerReleasedFromLastFire;
 
         private Transform pCam;
+        private RaycastHit hit;
+
+        private List<Vector3> hits = new List<Vector3>();
         #endregion
 
         #region Private Methods
@@ -43,7 +46,16 @@ namespace MTB
             source = GetComponent<AudioSource>();
             ammo = weaponInfo.maxAmmo;
             storedAmmo = weaponInfo.maxStoredAmmo;
-            triggeReleasedFromLastFire = true;
+            triggerReleasedFromLastFire = true;
+            pCam = transform.parent;
+        }
+
+        /** 
+        * @brief   Returns bool if the raycast collides with a object or not
+        */
+        private bool RayCast()
+        {
+            return UnityEngine.Physics.Raycast(pCam.position, pCam.forward + weaponInaccuracy(weaponInfo.maxInaccurecy, weaponInfo.minInaccuracy), out hit, weaponInfo.shotDistance);
         }
 
         private void OnGUI()
@@ -51,10 +63,24 @@ namespace MTB
             GUI.Box(new Rect(0, 0, 100, 20), ammo + "/" + storedAmmo);
         }
 
+        private void OnDrawGizmos()
+        {
+            
+            foreach(Vector3 v in hits)
+            {
+                Gizmos.DrawCube(v, Vector3.one / 2);
+            }
+
+        }
+
         #endregion
 
         #region Public Methods
 
+
+        /** 
+        * @brief   Firing logic
+        */
         public virtual void Fire()
         {
 
@@ -68,7 +94,8 @@ namespace MTB
                     shotsLeftInBurst--;
                 }
                 else if (weaponInfo.fireMode == WeaponInfo.FireMode.Single)
-                    if (!triggeReleasedFromLastFire) return;
+                    if (!triggerReleasedFromLastFire)
+                        return;
 
                 nextShotTime = Time.time + weaponInfo.fireRate;
 
@@ -77,26 +104,48 @@ namespace MTB
                 if (!weaponInfo.usesProjectile)
                     RaycastShot();
 
-                //source.PlayOneShot(weaponInfo.shootAudio, 1);
+                source.PlayOneShot(weaponInfo.shootAudio, 1);
 
-                triggeReleasedFromLastFire = false;
+                triggerReleasedFromLastFire = false;
 
             }
 
         }
 
+        /** 
+        * @brief   Logic for Raycast shooting
+        */
         public virtual void RaycastShot()
         {
 
-            print("Fire");
+            if (RayCast())
+            {
+                Entity entity = hit.transform.GetComponent<Entity>();
 
+                if (entity && entity is IDamageable)
+                {
+                    var damageable = entity as IDamageable;
+                    if (damageable != null)
+                    {
+                        float adjustedDmg = weaponInfo.damage * weaponInfo.damageFalloff.Evaluate(hit.distance / weaponInfo.shotDistance);
+                        damageable.TakeDamage(new DamageInfo(adjustedDmg, null, Vector3.zero));
+                    }
+                }
+                hits.Add(hit.point);
+            }
         }
 
+        /** 
+        * @brief   Logic for Projectile shooting
+        */
         public virtual void ProjectileShot()
         {
 
         }
 
+        /** 
+        * @brief   Weapon Reloading
+        */
         public virtual void Reload()
         {
             if (storedAmmo >= ammo)
@@ -107,20 +156,32 @@ namespace MTB
             }
             else if (storedAmmo < ammo)
             {
-                int amo = weaponInfo.maxAmmo - ammo;
-                if (amo >= storedAmmo)
+                int ammoDiff = weaponInfo.maxAmmo - ammo;
+                if (ammoDiff >= storedAmmo)
                 {
-                    int t = amo - storedAmmo;
+                    int t = ammoDiff - storedAmmo;
                     ammo += t;
                     storedAmmo = 0;
                 }
-                else if (amo < storedAmmo)
+                else if (ammoDiff < storedAmmo)
                 {
-                    int t = storedAmmo - amo;
+                    int t = storedAmmo - ammoDiff;
                     ammo = weaponInfo.maxAmmo;
                     storedAmmo -= t;
                 }
             }
+        }
+
+        public Vector3 weaponInaccuracy(Vector2 max, Vector2 min)
+        {
+
+            float x = Random.Range(min.x, max.x);
+            float y = Random.Range(min.y, max.y);
+
+            Vector3 inaccuracy = new Vector3(x, y, 0);
+            inaccuracy = transform.TransformDirection(inaccuracy);
+            return inaccuracy;
+
         }
 
         public int Ammo
@@ -150,7 +211,7 @@ namespace MTB
 
         public void TriggerUp()
         {
-            triggeReleasedFromLastFire = true;
+            triggerReleasedFromLastFire = true;
             shotsLeftInBurst = weaponInfo.burstAmmont;
         }
 
@@ -208,6 +269,10 @@ namespace MTB
         public float damage;
         public AnimationCurve damageFalloff;
 
+        [Header("Weapon Inaccuracy")]
+        public Vector2 minInaccuracy;
+        public Vector2 maxInaccurecy;
+
         [Header("Recoil")]
         public Vector2 kickMinMax;
         public Vector2 recoilAngleMinMax;
@@ -220,4 +285,35 @@ namespace MTB
         public AudioClip reloadAudio;
 
     }
+
+    public class DamageInfo
+    {
+
+        private float damage;
+        private Player player;
+        private Vector3 origin;
+
+        public DamageInfo(float dmg, Player player, Vector3 origin)
+        {
+            damage = dmg;
+            this.player = player;
+            this.origin = origin;
+        }
+
+        public float GetDamage()
+        {
+            return damage;
+        }
+
+        public Player GetPlayer()
+        {
+            return player;
+        }
+
+        public Vector3 GetOrigin()
+        {
+            return origin;
+        }
+    }
+
 }

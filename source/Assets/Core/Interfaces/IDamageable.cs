@@ -15,6 +15,6 @@ namespace MTB {
          * @brief   add damage to object
          * @param   d   amount of damage to add 
          */
-        void TakeDamage(float d);
+        void TakeDamage(DamageInfo info);
     }
 }
