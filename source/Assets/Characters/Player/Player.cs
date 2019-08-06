@@ -58,14 +58,6 @@ namespace MTB
             Camera();
             Move();
 
-            if (Application.isEditor)
-            {
-                if (Input.GetKeyDown(KeyCode.PageDown))
-                    TakeDamage(5);
-                else if (Input.GetKeyDown(KeyCode.PageUp))
-                    AddHealth(5);
-            }
-
         }
 
         /** 
@@ -144,7 +136,7 @@ namespace MTB
         /** 
          * @brief   
          */
-        public void TakeDamage(float d)
+        public void TakeDamage(DamageInfo d)
         {
 
 
