@@ -44,6 +44,10 @@ namespace MTB
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
+            MoveSpeed = 10f;
+            StrafeSpeed = 7f;
+            JumpHeight = 10f;
+
         }
 
         /** 
@@ -53,14 +57,6 @@ namespace MTB
         {
             Camera();
             Move();
-
-            if (Application.isEditor)
-            {
-                if (Input.GetKeyDown(KeyCode.PageDown))
-                    TakeDamage(5);
-                else if (Input.GetKeyDown(KeyCode.PageUp))
-                    AddHealth(5);
-            }
 
         }
 
@@ -91,7 +87,7 @@ namespace MTB
             if (Input.GetButtonDown("Jump") && Controller.isGrounded)
                 Jump();
 
-            velocity.y -= Gravity * Time.deltaTime;
+            velocity.y -= 20f * Time.deltaTime;
 
             Controller.Move(velocity * Time.deltaTime);
 
@@ -108,7 +104,7 @@ namespace MTB
         /** 
          * @brief   jump
          */
-        private void Action()
+        public void Action()
         {
 
         }
@@ -140,7 +136,7 @@ namespace MTB
         /** 
          * @brief   
          */
-        public void TakeDamage(float d)
+        public void TakeDamage(DamageInfo d)
         {
 
 
@@ -158,11 +154,6 @@ namespace MTB
          * @brief   
          */
         public void AddArmor(float a)
-        {
-
-        }
-
-        public void Action()
         {
 
         }
