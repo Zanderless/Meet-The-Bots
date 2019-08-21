@@ -88,9 +88,13 @@ namespace MTB
                 Jump();
 
 <<<<<<< HEAD
+            velocity.y -= PhysicsData.GRAVITY * Time.deltaTime;
+=======
+<<<<<<< HEAD
             velocity.y -= 20f * Time.deltaTime;
 =======
             velocity.y -= PhysicsData.GRAVITY * Time.deltaTime;
+>>>>>>> develop
 >>>>>>> develop
 
             Controller.Move(velocity * Time.deltaTime);
