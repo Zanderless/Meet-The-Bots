@@ -1,5 +1,5 @@
 /**
- * @file       : IPublisher.cs
+ * @file       : ISound.cs
  * @author     :
  * @description:
  * @note    
@@ -10,9 +10,10 @@ using UnityEngine;
 
 namespace MTB {
 
-    interface IPublisher {
+    public interface ISound {
 
-        void publish();
-        
+        void begin();
+
+        void end();
     }
 }

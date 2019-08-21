@@ -17,10 +17,27 @@ namespace MTB
 
     public class EntityData
     {
+<<<<<<< HEAD
         public static readonly decimal maxFluid = 100;
         public static readonly decimal maxEnergy;
         public static readonly decimal maxPsyche;
 
+=======
+        public readonly decimal maxFluid;
+        public readonly decimal maxEnergy;
+        public readonly decimal maxPsyche;
+        public readonly decimal maxStability;
+    }
+
+    public class InputData {
+        public readonly String HORIZONTAL = "horizontal";
+        public readonly String VERTICAL = "vertical";
+        public readonly String JUMP = "horizontal";
+    }
+
+    public class PhysicsData {
+        public readonly decimal GRAVITY = 9.8;
+>>>>>>> develop
     }
 
     /* Entity enum types */
@@ -42,6 +59,7 @@ namespace MTB
         public decimal fluid;
         public decimal energy;
         public decimal pysche;
+        public decimal stability; 
 
         /**
          * @brief   Constructor
