@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public class Environment {
+    public class WorldEnvironment {
         
     }
 }

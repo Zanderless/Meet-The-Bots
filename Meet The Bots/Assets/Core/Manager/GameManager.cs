@@ -8,12 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
+
 public class GameManager {
 
 }
 
-=======
+
 namespace MTB {
     
     public class GameManager : IManager {
@@ -47,4 +47,3 @@ namespace MTB {
         }
     }
 }
->>>>>>> fixing batch errors

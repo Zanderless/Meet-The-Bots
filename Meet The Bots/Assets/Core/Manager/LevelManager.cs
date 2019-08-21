@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-=======
+
+
 /**
  * @file       : LevelManager.cs
  * @author     :
@@ -44,4 +44,3 @@ namespace MTB {
         }
     }
 }
->>>>>>> fixing batch errors

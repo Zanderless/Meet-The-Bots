@@ -157,5 +157,10 @@ namespace MTB
         {
 
         }
+
+        public void Die()
+        {
+
+        }
     }
 }

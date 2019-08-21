@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-=======
+
+
 /**
  * @file       : WorldManager.cs
  * @author     :
@@ -44,4 +44,4 @@ namespace MTB {
         }
     }
 }
->>>>>>> fixing batch errors
+

@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace MTB {
     /* Audio enums */
-    public static enum AudioState {
+    public enum AudioState {
         ENABLED,
         MUTED,
     }
 
-    public static enum AudtioMood {
+    public enum AudioMood {
         INTENSE, 
         CALM, 
     }

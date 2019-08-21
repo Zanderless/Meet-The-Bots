@@ -9,17 +9,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MTB {
-
     public class Dummy : Entity, IEntity, IDamageable {
-
         Entity E => new Entity();
 
         /** 
-* @brief   Start is called before the first frame update
-*/
-        void Start() {
-
-            //print(E.Attributes.fluid);
+        * @brief   Start is called before the first frame update
+        */
+        void Start() 
+        {
 
         }
 

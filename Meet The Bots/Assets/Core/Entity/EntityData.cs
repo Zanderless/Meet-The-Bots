@@ -17,27 +17,21 @@ namespace MTB
 
     public class EntityData
     {
-<<<<<<< HEAD
-        public static readonly decimal maxFluid = 100;
+        public static readonly decimal maxFluid;
         public static readonly decimal maxEnergy;
         public static readonly decimal maxPsyche;
-
-=======
-        public readonly decimal maxFluid;
-        public readonly decimal maxEnergy;
-        public readonly decimal maxPsyche;
-        public readonly decimal maxStability;
+        public static readonly decimal maxStability;
     }
 
     public class InputData {
-        public readonly String HORIZONTAL = "horizontal";
-        public readonly String VERTICAL = "vertical";
-        public readonly String JUMP = "horizontal";
+        public static readonly String HORIZONTAL = "horizontal";
+        public static readonly String VERTICAL = "vertical";
+        public static readonly String JUMP = "jump";
     }
 
-    public class PhysicsData {
-        public readonly decimal GRAVITY = 9.8;
->>>>>>> initial API
+    public class PhysicsData
+    {
+        public static readonly float GRAVITY = 9.8f;
     }
 
     /* Entity enum types */
@@ -67,11 +61,12 @@ namespace MTB
          * @param   energy      Entity life energy 
          * @param   psyche      Entity mental energy   
          */
-        public Attributes(decimal fluid, decimal energy, decimal pysche)
+        public Attributes(decimal fluid, decimal energy, decimal pysche, decimal stability)
         {
             this.fluid = fluid;
             this.energy = energy;
             this.pysche = pysche;
+            this.stability = stability;
         }
     }
 

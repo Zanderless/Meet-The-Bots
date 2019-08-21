@@ -11,6 +11,16 @@ using UnityEngine;
 namespace MTB {
 
     public class BaseAgent : IAgent {
+
+        public void enable()
+        {
+
+        }
+
+        public void disable()
+        {
+
+        }
         
     }
 }

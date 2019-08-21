@@ -10,21 +10,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MTB {
-<<<<<<< HEAD
-    interface IManager {
-
-        /**
-        *
-        */
-        void load();
-
-        void quit();
-
-        void open();
-
-        void close();
-
-=======
     
     public interface IManager {
 
@@ -47,9 +32,8 @@ namespace MTB {
          *  @brief  Create a new item
          */
         void Create();
->>>>>>> fixing batch errors
-    }
 
+    }
 }
 
 

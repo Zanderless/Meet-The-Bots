@@ -18,7 +18,8 @@ namespace MTB {
         /* Entity Data */
         private Attributes _attributes;
 
-        public Attributes Attributes  {
+        public Attributes Attributes  
+        {
             get { return _attributes; }
             set { _attributes = value; }
         }
@@ -29,7 +30,8 @@ namespace MTB {
         public Entity() {
             _attributes = new Attributes(EntityData.maxFluid, 
                                          EntityData.maxEnergy, 
-                                         EntityData.maxPsyche);
+                                         EntityData.maxPsyche,
+                                         EntityData.maxStability);
         }
     }
 }

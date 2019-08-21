@@ -12,7 +12,7 @@ using UnityEngine;
 namespace MTB {
 
     /* AI Enums */
-    public static enum AIState {
+    public enum AIState {
         ACTIVE, 
         INACTIVE,
         RESET,
