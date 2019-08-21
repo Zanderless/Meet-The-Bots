@@ -11,6 +11,8 @@ using UnityEngine;
 namespace MTB {
 
     interface IAgent {
-        
+        void enable();
+
+        void disable();
     }
 }

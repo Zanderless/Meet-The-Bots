@@ -1,7 +1,9 @@
 /**
  * @file       : AIManager.cs
  * @author     :
- * @description: Core Game manager
+ * @description: Core AI manager. 
+ *               **AI agents controlled via specification from 
+ *               a given AI architecture...**
  * @note    
  */
 
