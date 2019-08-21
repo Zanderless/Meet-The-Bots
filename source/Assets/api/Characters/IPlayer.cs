@@ -1,5 +1,5 @@
 /**
- * @file       : IPublisher.cs
+ * @file       : IPlayer.cs
  * @author     :
  * @description:
  * @note    
@@ -10,9 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    interface IPublisher {
+    public interface IPlayer : IHealable, IDamageable, IMovement, IEntity {
 
-        void publish();
-        
     }
 }
