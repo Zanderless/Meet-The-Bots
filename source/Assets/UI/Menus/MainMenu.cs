@@ -8,28 +8,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MTB {
+namespace MTB
+{
 
-    public class MainMenu : IMenu {
-
-        /**
-         * @brief   construct a new menu 
-         */
-        void construct();
+    public class MainMenu : IMenu
+    {
 
         /**
-         * @brief   setup a menu
+         * @brief   Construct a new menu 
          */
-        void setup();
+        public void Construct()
+        {
+
+        }
 
         /**
-         * @brief   open a menu 
+         * @brief   Setup a menu
          */
-        void open();
+        public void Setup()
+        {
+
+        }
 
         /**
-         * @brief   close the active menu 
+         * @brief   Open a menu 
          */
-        void close();
+        public void Open()
+        {
+
+        }
+
+        /**
+         * @brief   Close the active menu 
+         */
+        public void Close()
+        {
+
+        }
     }
 }
