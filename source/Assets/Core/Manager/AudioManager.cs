@@ -1,7 +1,7 @@
 /**
  * @file       : AudioManager.cs
  * @author     :
- * @description: Core Game manager
+ * @description: Core audio manager (musiccal flow control)
  * @note    
  */
 

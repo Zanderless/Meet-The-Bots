@@ -1,5 +1,5 @@
 /**
- * @file       : BaseResource.cs
+ * @file       : ISound.cs
  * @author     :
  * @description:
  * @note    
@@ -10,7 +10,10 @@ using UnityEngine;
 
 namespace MTB {
 
-    public interface IResource {
-        
+    public interface ISound {
+
+        void begin();
+
+        void end();
     }
 }

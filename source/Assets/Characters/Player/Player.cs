@@ -17,7 +17,7 @@ namespace MTB
     [RequireComponent(typeof(CharacterController))]
     [DisallowMultipleComponent]
 
-    public class Player : Entity, IDamageable, IHealable, IMovement
+    public class Player : Entity, IPlayer
     {
 
         public bool EnableDebug;
@@ -25,7 +25,7 @@ namespace MTB
         private Vector3 velocity;
         private CharacterController Controller => GetComponent<CharacterController>();
 
-        private bool IsMoving => Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+        private bool IsMoving => Input.GetAxis(InputData.HORIZONTAL) != 0 || Input.GetAxis(InputData.VERTICAL) != 0;
 
         public Vector2 mouseSensitivity;
         float verticalLookRotation;
@@ -77,17 +77,25 @@ namespace MTB
         public void Move()
         {
 
-            float v = Input.GetAxis("Vertical") * MoveSpeed;
-            float h = Input.GetAxis("Horizontal") * StrafeSpeed;
+            float v = Input.GetAxis(InputData.VERTICAL) * MoveSpeed;
+            float h = Input.GetAxis(InputData.HORIZONTAL) * StrafeSpeed;
 
             velocity = new Vector3(h, velocity.y, v);
 
             velocity = transform.TransformDirection(velocity);
 
-            if (Input.GetButtonDown("Jump") && Controller.isGrounded)
+            if (Input.GetButtonDown(InputData.JUMP) && Controller.isGrounded)
                 Jump();
 
+<<<<<<< HEAD
+            velocity.y -= PhysicsData.GRAVITY * Time.deltaTime;
+=======
+<<<<<<< HEAD
             velocity.y -= 20f * Time.deltaTime;
+=======
+            velocity.y -= PhysicsData.GRAVITY * Time.deltaTime;
+>>>>>>> develop
+>>>>>>> develop
 
             Controller.Move(velocity * Time.deltaTime);
 

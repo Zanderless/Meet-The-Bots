@@ -1,5 +1,5 @@
 /**
- * @file       : BaseResource.cs
+ * @file       : IPlayer.cs
  * @author     :
  * @description:
  * @note    
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public interface IResource {
-        
+    public interface IPlayer : IHealable, IDamageable, IMovement, IEntity {
+
     }
 }

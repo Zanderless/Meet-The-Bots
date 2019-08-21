@@ -34,6 +34,8 @@ namespace MTB
 
         private Transform pCam;
         private RaycastHit hit;
+
+        private List<Vector3> hits = new List<Vector3>();
         #endregion
 
         #region Private Methods
@@ -59,6 +61,16 @@ namespace MTB
         private void OnGUI()
         {
             GUI.Box(new Rect(0, 0, 100, 20), ammo + "/" + storedAmmo);
+        }
+
+        private void OnDrawGizmos()
+        {
+            
+            foreach(Vector3 v in hits)
+            {
+                Gizmos.DrawCube(v, Vector3.one / 2);
+            }
+
         }
 
         #endregion
@@ -119,6 +131,7 @@ namespace MTB
                         damageable.TakeDamage(new DamageInfo(adjustedDmg, null, Vector3.zero));
                     }
                 }
+                hits.Add(hit.point);
             }
         }
 

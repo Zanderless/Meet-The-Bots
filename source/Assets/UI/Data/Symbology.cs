@@ -1,7 +1,7 @@
 /**
- * @file       : BaseResource.cs
+ * @file       : Symbology.cs
  * @author     :
- * @description:
+ * @description: UI symbology data 
  * @note    
  */
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public interface IResource {
-        
+    public class Symbology {
+
     }
 }
