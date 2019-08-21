@@ -1,7 +1,7 @@
 /**
- * @file       : BaseResource.cs
+ * @file       : BaseMessage.cs
  * @author     :
- * @description:
+ * @description: basic message 
  * @note    
  */
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public interface IResource {
-        
+    public class BaseMessage {
+
     }
 }

@@ -1,7 +1,7 @@
 /**
- * @file       : BaseResource.cs
+ * @file       : Socket.cs
  * @author     :
- * @description:
+ * @description: Network communication socket 
  * @note    
  */
 using System.Collections;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace MTB {
 
-    public interface IResource {
-        
+    public class Socket {
+
     }
 }
