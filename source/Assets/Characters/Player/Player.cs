@@ -11,17 +11,14 @@ using UnityEngine.UI.ProceduralImage;
 using TMPro;
 using System;
 
-namespace MTB {
+namespace MTB
+{
 
     [RequireComponent(typeof(CharacterController))]
     [DisallowMultipleComponent]
 
-    public class Player : Entity, IDamageable, IHealable, IMovement {
-
-        private float MoveSpeed => 10f;
-        private float StrafeSpeed => 7f;
-        private float JumpHeight => 8f;
-        private float Gravity => 20f;
+    public class Player : Entity, IDamageable, IHealable, IMovement
+    {
 
         public bool EnableDebug;
 
@@ -34,35 +31,31 @@ namespace MTB {
         float verticalLookRotation;
         private Transform PCam => transform.GetChild(0);
 
-        //UI
-        public ProceduralImage healthUI;
-        public ProceduralImage armorUI;
-        public TextMeshProUGUI healthTxt;
+        public float MoveSpeed { get; set; }
+        public float StrafeSpeed { get; set; }
+        public float JumpHeight { get; set; }
 
         /** 
          * @brief   Start is called before the first frame update
          */
-        private void Start() {
+        private void Start()
+        {
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
-            Health = maxHealth;
 
         }
 
         /** 
          * @brief   Update is called every frame 
          */
-        private void Update() {
+        private void Update()
+        {
             Camera();
-            Movement();
+            Move();
 
-            healthUI.fillAmount = Mathf.Lerp(healthUI.fillAmount, Health / maxHealth, Time.deltaTime * 3);
-            armorUI.fillAmount = Mathf.Lerp(armorUI.fillAmount, Armor / maxArmor, Time.deltaTime * 3);
-            healthTxt.text = Health.ToString("000");
-
-            if (Application.isEditor) {
+            if (Application.isEditor)
+            {
                 if (Input.GetKeyDown(KeyCode.PageDown))
                     TakeDamage(5);
                 else if (Input.GetKeyDown(KeyCode.PageUp))
@@ -74,7 +67,8 @@ namespace MTB {
         /** 
          * @brief  
          */
-        private void Camera() {
+        private void Camera()
+        {
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity.x);
             verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivity.y;
             verticalLookRotation = Mathf.Clamp(verticalLookRotation, -60, 60);
@@ -84,7 +78,8 @@ namespace MTB {
         /** 
          * @brief  
          */
-        private void Movement() {
+        public void Move()
+        {
 
             float v = Input.GetAxis("Vertical") * MoveSpeed;
             float h = Input.GetAxis("Horizontal") * StrafeSpeed;
@@ -92,7 +87,7 @@ namespace MTB {
             velocity = new Vector3(h, velocity.y, v);
 
             velocity = transform.TransformDirection(velocity);
-            
+
             if (Input.GetButtonDown("Jump") && Controller.isGrounded)
                 Jump();
 
@@ -103,27 +98,33 @@ namespace MTB {
         }
 
         /** 
-         * @brief   move
+         * @brief   jump
          */
-        void move(); 
+        public void Jump()
+        {
+            velocity.y = JumpHeight;
+        }
 
         /** 
          * @brief   jump
          */
-        private void Jump() {
-            velocity.y = JumpHeight;
+        private void Action()
+        {
+
         }
 
         /** 
          * @brief   
          */
-        private void OnGUI() {
+        private void OnGUI()
+        {
 
             GUIStyle style = new GUIStyle();
             style.fontSize = 15;
             style.normal.textColor = Color.white;
 
-            if (EnableDebug) {
+            if (EnableDebug)
+            {
                 GUI.Label(new Rect(10, 5, 100, 20), "Player Debug Stats", style);
 
                 var vel = new Vector3(velocity.x / MoveSpeed, 0, velocity.z / StrafeSpeed);
@@ -139,34 +140,31 @@ namespace MTB {
         /** 
          * @brief   
          */
-        public void TakeDamage(float d) {
-            
-            if(Armor > 0) {
-                if (Armor < d) { 
-                    float diff = d - Armor;
-                    Armor = 0;
-                    Health -= diff;
-                }
-                else
-                    Armor -= d;
-            }
-            else {
-                Health -= d;
-            }
+        public void TakeDamage(float d)
+        {
+
+
         }
 
         /** 
          * @brief   
          */
-        public void AddHealth(float h) {
-            Health += h;
+        public void AddHealth(float h)
+        {
+
         }
 
         /** 
          * @brief   
          */
-        public void AddArmor(float a) {
-            Armor += a;
+        public void AddArmor(float a)
+        {
+
+        }
+
+        public void Action()
+        {
+
         }
     }
 }
