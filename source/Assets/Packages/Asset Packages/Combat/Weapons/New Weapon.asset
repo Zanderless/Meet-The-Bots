@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: New Weapon
+  m_EditorClassIdentifier: Assembly-CSharp:MTB:WeaponInfo
+  weaponName: Pistol
+  fireMode: 0
+  fireRate: 0.04
+  burstAmmont: 0
+  usesAmmo: 1
+  maxAmmo: 8
+  maxStoredAmmo: 128
+  reloadTime: 0.2
+  reloadType: 0
+  usesProjectile: 0
+  projectile: {fileID: 0}
+  projectileVelocity: 0
+  shotDistance: 1000
+  damage: 7
+  damageFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.4479613
+      outSlope: -3.4479613
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.03762136
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.0804164
+      outSlope: -0.0804164
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17597085
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  kickMinMax: {x: 0.05, y: 0.2}
+  recoilAngleMinMax: {x: 3, y: 5}
+  recoilMoveSettleTime: 0.1
+  recoilRotationSettleTime: 0.1
+  recoilMode: 2
+  shootAudio: {fileID: 0}
+  reloadAudio: {fileID: 0}
