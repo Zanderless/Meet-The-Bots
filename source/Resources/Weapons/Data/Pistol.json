@@ -1,0 +1,13 @@
+{
+  "WeaponName": "Pistol",
+  "MaxAmmo": 7,
+  "MaxStoredAmmo": 128,
+  "FireRate": 0.4,
+  "Damage": 10,
+  "ShotDistance": 100,
+  "WeaponPrefab": "Weapons/Prefabs/Test",
+  "IsAutomatic": false,
+  "UsesAmmo": true,
+  "UsesProjectiles": false,
+  "ProjectilePrefab": null
+}
